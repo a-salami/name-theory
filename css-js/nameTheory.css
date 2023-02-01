@@ -138,7 +138,7 @@ div[class^="col-sm"] h5{
 }
 
 .pageFooter .col-sm-7{ /* sets the text in this footer column to sit at the bottom end of the column because it looks cooler like that*/
-    padding-top: 5%;
+    padding-top: 3%;
 }
 
 .pageFooter .col-sm-7 h4 a{
