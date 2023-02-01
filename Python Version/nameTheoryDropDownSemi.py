@@ -7,7 +7,7 @@ from tkinter import ttk
 with open(os.path.dirname(os.path.realpath(__file__)) + "\\names.json") as f:
     file = json.load(f)
 
-#presents appropriate advice to the user-inputted name                              PROBLEM: DOESNT RECOGNIZE Zoë
+#presents appropriate advice to the user-inputted name                              PROBLEM: DOESNT RECOGNIZE Zoë 
 def enterButtonPressed():
     genAdviceLabel.config(text = "")
 
