@@ -1,8 +1,12 @@
+//add a button in the footer under page last modified so it permeates across pages: "change to light mode"
+//when clicked, it switches to light mode, changing the CSS to the light mode variant found in Thousand Pictures
+//when clicked, the text font changes to "change to dark mode"
+
 function dynamicRelativeReference(){
     rootFolder = ""; //holds relative file path for any href
     numSlashes = 0; //counts the number of [../] necessary to get to 'site'
 
-    var filename = location.pathname.split("thousand-pictures")[1]; //gets the full file path, splits it, keeps the split only after the word 'site'
+    var filename = location.pathname.split("name-theory")[1]; //gets the full file path, splits it, keeps the split only after the word 'site'
 
     //determine number of [/] present in the root folder filepath
     for (a in filename){ //step through each character in filename
@@ -19,4 +23,151 @@ function dynamicRelativeReference(){
         rootFolder += "../";
     }
     return rootFolder;
+}
+
+//creates the header for all pages
+function setHeader(id){
+    content = `<a href = "` + dynamicRelativeReference() + `index.html">
+    <h1 id = "pageTitle">Name Theory</h1>
+    <h5 id = "pageSubtitle" class = "subheader"><i>Considering whether people who share the same name share the same traits</i></h5></a>`;
+
+    document.getElementById(id).innerHTML += content;
+}
+
+//creates the navigation bar for all pages
+function setNavbar(id){
+    content = `<ul>
+        <li><a href = "` + dynamicRelativeReference() + `index.html">Home</a></li>
+        <li><a href = "` + dynamicRelativeReference() + `pages/search.html">Search for a Name</a></li>
+        <li><a href = "` + dynamicRelativeReference() + `pages/display.html">Read All Assessments</a></li>
+    </ul>`;
+
+    document.getElementById(id).innerHTML += content;
+}
+
+//customizes a greeting for the page user; called exclusively to edit setFooter()
+function customizedGreeting(){
+    var greeting = document.getElementById("userGreeting").value; //gets the current value of the userGreeting element in the footer
+    localStorage.setItem("greeting", greeting); //assigns to local storage to ensure data retention
+
+    if (greeting == ""){ //if the user (re)submitted a blank text field
+        localStorage.setItem("greeting", "friend"); //set to 'friend'
+    }
+
+    document.getElementById("greeting").innerHTML = "Welcome, " + localStorage.getItem("greeting") + "."; //post the user's personalized/reset greeting
+}
+
+//resets the greeting for the page user; called exclusively to edit setFooter()
+function resetGreeting(){
+    localStorage.setItem("greeting", "friend"); //reset to 'friend'
+    document.getElementById("greeting").innerHTML = "Welcome, " + localStorage.getItem("greeting") + "."; //set the userGreeting element accordingly
+}
+
+//determines when last the current page was modified; called exclusively to edit setFooter()
+function pageLastModified(){
+    lastModified = document.lastModified.slice(0, -3); //cutting off the seconds in the time output format hh:mm:ss
+
+    //replacing 24hr time display with typical 12hr time display
+    if(parseInt(lastModified.slice(11, 13)) > 12){ //if the hour is greater than 12
+        hour = parseInt(lastModified.slice(11, 13)) - 12; //subtract 12 from it
+        lastModified = lastModified.slice(0, 10) + " " + hour + ":" + lastModified.slice(14) + " p.m."; //add a p.m. to the end of the string
+    }
+    else{ 
+        lastModified += " a.m."; //add an a.m. to the end of the string
+    }
+
+    return lastModified;
+}
+
+//switches the 'last updated' date between formats: MM/DD/YYYY hh:mm, Month DD, YYYY at hh:mm; called exclusively to edit setFooter()
+function dateDisplay(){
+    ogFormat = document.getElementById("modified").value;
+    newFormat = "";
+
+    if (ogFormat[0] in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]){ //if the first character is a number
+        month = ogFormat.split("/")[0]; //capturing the month
+        day = ogFormat.split("/")[1]; //capturing the day
+        year = ogFormat.split("/")[2].split(" ")[0]; //split again to split year from time, capturing the year
+        time = ogFormat.split("/")[2].split(" ")[1] + " " + ogFormat.split("/")[2].split(" ")[2]; //split again to split year from time, capturing the time
+        
+        switch(month){ //translate the numerical month into its written form
+            case "01":
+                newFormat = "January"; 
+                break;
+            case "02":
+                newFormat = "February";
+                break;
+
+            case "03":
+                newFormat = "March";
+                break;
+
+            case "04":
+                newFormat = "April";
+                break;
+
+            case "05":
+                newFormat = "May";
+                break;
+
+            case "06":
+                newFormat = "June";
+                break;
+
+            case "07":
+                newFormat = "July";
+                break;
+
+            case "08":
+                newFormat = "August";
+                break;
+
+            case "09":
+                newFormat = "September";
+                break;
+                
+            case "10":
+                newFormat = "October";
+                break;
+
+            case "11":
+                newFormat = "Novemeber";
+                break;
+
+            case "12":
+                newFormat = "December";
+                break;
+        }
+
+        newFormat += " " + day + ", " + year + " at " + time;
+    }
+    else{ //if the first character is a character
+        newFormat = pageLastModified(); //call the function that sets the original format instead of rewriting it
+    }
+
+    document.getElementById("modified").value = newFormat;
+}
+
+//creates the footer for all pages
+function setFooter(id){
+    content = `
+    <div class = "col-sm-5 greeting">
+        <h4 id = "greeting">Welcome, ` + localStorage.getItem("greeting") + `.</h4>
+        <h5>Want to customize this greeting?</h5>
+
+        <form onsubmit = "customizedGreeting(); this.reset();">
+            <input class = "inputText" type = "text" id = "userGreeting" placeholder = "Enter your name here..."><br>
+            <input type = "submit" value = "Submit Name">
+        </form>
+        <input type = "submit" value = "Reset" onclick = "resetGreeting();">
+    </div>
+
+    <div class = "col-sm-7">
+        <h4>Last updated:</h4>
+        <input type = "submit" id = "modified" value = "` + pageLastModified() + `" onclick = "dateDisplay();"><br>
+        <a href = "#top"><input type = "submit" value = "To Top"></a><br>
+        <input type = "submit" value = "Change to Light Mode">
+    </div>`;
+
+    document.getElementById(id).innerHTML += content;
 }
