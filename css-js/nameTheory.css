@@ -1,0 +1,191 @@
+@font-face{
+    font-family: 'Spectral';
+    /* src: url("https://fonts.google.com/specimen/Spectral?query=spectral"); */
+    src: url("../fonts/Spectral-Regular.ttf")
+}
+
+/* When the screen gets small enough to serve as a mobile screen */
+@media (max-width: 600px){ 
+    .pageHeader{
+        font-size: 15px;
+    }
+    .subheader{
+        font-size: 12px;
+    }
+
+    .pageFooter h4{
+        font-size: 14px;
+    }
+
+    .pageFooter h5{
+        font-size: 12px;
+    }
+
+    /* see if you can include a dropdown */
+    .navbar ul li{
+        display: block;
+    }
+}
+
+/* COLORS
+Deep, muted purple: #7b8cb6;
+Pastel lavender: #b4c2e4;
+Pastel blue: #b4e0e4;
+Blunted white (text color): rgb(241, 234, 234);
+ */
+
+body{
+    font-family: 'Spectral', serif;
+    background-color: black;
+    color: rgb(241, 234, 234);
+}
+
+/* styling the header */
+.pageHeader{
+    padding: 20px;
+    background-color: #7b8cb6;
+}
+
+.pageHeader a{
+    color: black;
+    text-decoration: none;
+}
+
+/* styling the navbar */
+.navbar{
+    padding: 20px 0px 20px 8px; /*top, right, left, bottom*/
+    background-color: #7b8cb6;
+}
+
+.navbar ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar li{
+    margin: 9px;
+    padding: 4px;
+    list-style-type: none;
+    text-align: center;
+    display: inline;
+    background-color: #b4c2e4;
+    border: 2px solid black;
+    font-weight: 600;
+}
+
+.navbar li:hover{
+    background-color: #b4e0e4;
+    font-style: italic;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: black;
+}
+
+div[class^="col-sm"]{
+    padding: 10px 5px 5px 15px; /*top, right, left, bottom*/
+}
+
+/* styling links in columns */
+div[class^="col-sm"] a{
+    text-decoration: none;
+    color: #b4e0e4;
+}
+
+div[class^="col-sm"] a:hover{
+    text-decoration: none;
+    color: #b4c2e4;
+}
+
+div[class^="col-sm"] a:visited{
+    text-decoration: none;
+    color: #b4c2e4;
+}
+
+div[class^="col-sm"] h5{
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* background colors of the rows */
+.row{
+    background-color: #0d1117;
+}
+
+.row.beige{
+    background-color: rgb(233, 220, 201);
+}
+
+/* styling footer */
+.pageFooter{
+    padding: 20px;
+    background-color: #7b8cb6;
+    color: black;
+}
+
+.pageFooter .col-sm-7{
+    text-align: right;
+}
+
+.pageFooter h4{
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.pageFooter h5{
+    font-size: 14px;
+}
+
+.pageFooter .col-sm-7{ /* sets the text in this footer column to sit at the bottom end of the column because it looks cooler like that*/
+    padding-top: 5%;
+}
+
+.pageFooter .col-sm-7 h4 a{
+    text-decoration: underline;
+    color: #b4e0e4;
+}
+
+.pageFooter .col-sm-7 h4 a:hover{
+    text-decoration: underline;
+    color: #b4c2e4;
+}
+
+.pageFooter .col-sm-7 h4 a:visited{
+    color: #b4c2e4;
+    text-decoration: underline;
+}
+
+button{
+    width: 135px;
+} 
+
+/* styling buttons and input fields */
+input[type="submit"], button{
+    border: 1px solid black;
+    background-color: #b4e0e4;
+    color: black;
+    font-size: small;
+    width: 185px;
+    text-align: center;
+}
+
+
+input[type="submit"]:hover, button:hover{
+    border: 1px solid black;
+    background-color: #b4c2e4;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+}
+
+input[class="inputText"]{
+    width: 185px;
+    font-style: italic;
+    font-size: smaller;
+}
+
+.clickHover{ /* sets the cursor to the mouse if hovering over "welcome" on index.html */
+    cursor: pointer;
+}
+
