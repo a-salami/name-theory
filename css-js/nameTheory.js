@@ -172,10 +172,23 @@ function setFooter(id){
     document.getElementById(id).innerHTML += content;
 }
 
+//capitalizes the first letter in each word. words are seperated by spaces
+function capitalize(userString){
+    userSplit = userString.split(" "); //split string or name into array indexes via space character
+    userCapitalized = ""; //string variable to catch final capitalized word
+
+    for (y = 0; y < userSplit.length; y++){ //iterate through each word in userSplit
+        userCapitalized += userSplit[y][0].toUpperCase() + userSplit[y].slice(1) + " "; //slice 1st letter, capitalize it, paste it to rest of word
+    }
+    return userCapitalized.trim(); //put the capitalized name back together and return it. also trims whitespace on the end of the string
+}
+
 //getting the assessment given a user submitted name
 function fetchAssessment(userName){
     assessment = ""; //variable to hold assessment text
     overallNote = ""; //note attached to the output assessement if they searched for a nonexistent name
+
+    userName = capitalize(userName); //calling capitalize() to capitalize the names
 
     if (userName.length > 1){ //if the user is searching for a name and not a letter, populate overallNote with this text for potential use
         overallNote = "We don't yet have enough on " + userName + "s to provide an assessment. However, we can give you the general assessments for traits shared by all those whose names start with the letter " + userName[0] + ".<br><br>";
@@ -185,15 +198,15 @@ function fetchAssessment(userName){
     names = [
         [ //A
             "A",
-            ["Aaron", "An * is likely untrustworthy. He will, quite frankly, be bad at covering it up, but he has a way of making you overlook things.\nIf you're not careful, you will stop seeing the red flags and start making excuses for them. Don't go there."],
+            ["Aaron", "An * is likely untrustworthy. He will, quite frankly, be bad at covering it up, but he has a way of making you overlook things.<br><br>If you're not careful, you will stop seeing the red flags and start making excuses for them. Don't go there."],
             ["Alexis Alexus", "* has much potential. She can be a fun friend and tends to be engaging in larger social gatherings. However, keep in mind that her being a fun friend doesn't make her a good friend."],
-            ["Ali Alli Ally Alison Alyson Allison Allyson", "Your *'s a 50-50 split. She's either annoying or quiet, but neither are to a high degree.\nIf she's an annoying one, it's not so incredibly annoying that you can't stand her. You'll probably end up being friends, too- it's the type of annoying that eventually turns to endearing.\nIf she's a quiet one, she's not painfully introverted, but don't be surprised if you have to make the first move if you want to talk to her."],
-            ["Aliana Alyana Aliyana", "*s can be kind of rough to deal with.\nThey do anything to get what they want, and will propably manipulate you into helping them.\n*s also tend to be drama queens. If you're not into that, then watch your back."],
-            ["Alia", "Please do yourself a favor and do not, under any circumstances, get close to an *.\nShe likely seems innocent enough on the outside, but she'll very quickly draw you into her mess and coerce you into 'helping' her.\nIf you're too kindhearted to say no, help from afar. If you're not, disengage right away and thank me later.\nShe's a drama queen of obscene proportions. Don't let her fool you. She may mean well, but she will drag you into a state of no longer meaning well quite easily. Be careful."],
-            ["Amanda", "*s are hardheaded and stubborn, but you will love them.\nThey're hilariously funny, whether you share their direct sense of humor or not.\nYou'll need to be patient with your *- that aforementioned stubbornness can get in the way of your relationship if you let it. Work through it and you'll be golden."],
-            ["Andrew", "*s are interesting men. They're not inherently bad or good to keep around, but you will need to stay aware.\nThey do not know how to express themselves very well despite having a lot to say. They can also be rather wishy-washy in their decision making, and it will be visible/palpable even if they do not tell you.\nThey're likely to be introverted and relatively softspoken, but if you establish mutual trust and are patient, your * will open up to you. They can be good friends despite their many quirks."],
-            ["Andy", "*s are absolute sweethearts in every way. They have a great sense of humor and a smile for every day of the week.\nKeep your * close, and be nice to him. He deserves it."],
-            ["Overall", "Quite an interesting letter. Many A names are a bit crazy and a little strange, but in an oddly endearing way. They're great friends once you get to know them.\nThey usually hold a few traits that seem a little 'much' to handle or are simply annoying, but they are typically easy to look past.\nIf you're willing to get to know an A on a deeper level, they're cool to hang around."]
+            ["Ali Alli Ally Alison Alyson Allison Allyson", "* is likely either quiet or shy and, quite honestly, a little bit annoying, but usually not to the point that you don't want to engage with her. She has a distinct personality under her shyness, quietness, or whatever annoying trait is currently keeping you from knowing her better. <br><br>She is likely holding herself hostage with her quietness or shyness. If you make the first step to engage her, she'll return the energy you give her. Give * A chance; she really might surprise you."],
+            ["Aliana Alyana Aliyana", "*s can be kind of rough to deal with.<br><br>They do anything to get what they want, and will propably manipulate you into helping them.<br><br>*s also tend to be drama queens. If you're not into that, then watch your back."],
+            ["Alia", "Please do yourself a favor and do not, under any circumstances, get close to an *.<br><br>She likely seems innocent enough on the outside, but she'll very quickly draw you into her mess and coerce you into 'helping' her.<br><br>If you're too kindhearted to say no, help from afar. If you're not, disengage right away and thank me later.<br><br>She's a drama queen of obscene proportions. Don't let her fool you. She may mean well, but she will drag you into a state of no longer meaning well quite easily. Be careful."],
+            ["Amanda", "*s are hardheaded and stubborn, but you will love them.<br><br>They're hilariously funny, whether you share their direct sense of humor or not.<br><br>You'll need to be patient with your *- that aforementioned stubbornness can get in the way of your relationship if you let it. Work through it and you'll be golden."],
+            ["Andrew", "*s are interesting men. They're not inherently bad or good to keep around, but you will need to stay aware.<br><br>They do not know how to express themselves very well despite having a lot to say. They can also be rather wishy-washy in their decision making, and it will be visible/palpable even if they do not tell you.<br><br>They're likely to be introverted and relatively softspoken, but if you establish mutual trust and are patient, your * will open up to you. They can be good friends despite their many quirks."],
+            ["Andy", "*s are absolute sweethearts in every way. They have a great sense of humor and a smile for every day of the week.<br><br>Keep your * close, and be nice to him. He deserves it."],
+            ["Overall", "Quite an interesting letter. Many A names a bit odd, but they tend to be endearing. They're great friends once you get to know them.<br><br>They usually hold a few traits that seem a little 'much' to handle or are simply annoying, but they are typically easy to work past. If you're willing to get to know an A on a deeper level, they're cool to hang around."]
         ],
 
         [ //B
@@ -235,7 +248,7 @@ function nameDisplay(){
     document.getElementById("displayName").innerHTML = "-" + userName.toUpperCase() + "-"; //set the right panel's title to userName
 
     assessment = fetchAssessment(userName); //call fetchAssessment to fetch the assessment text
-    assessment = assessment.split("*").join(userName); //replacing * [the mark for replacement] in the assessment text with userName
+    assessment = assessment.split("*").join(capitalize(userName)); //replacing * [the mark for replacement] in the assessment text with userName
 
     document.getElementById("displayAssessment").innerHTML = assessment; //set the right panel's <p> to assessment
 
