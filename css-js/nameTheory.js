@@ -171,3 +171,72 @@ function setFooter(id){
 
     document.getElementById(id).innerHTML += content;
 }
+
+//getting the assessment given a user submitted name
+function fetchAssessment(userName){
+    assessment = ""; //variable to hold assessment text
+    overallNote = ""; //note attached to the output assessement if they searched for a nonexistent name
+
+    if (userName.length > 1){ //if the user is searching for a name and not a letter, populate overallNote with this text for potential use
+        overallNote = "We don't yet have enough on " + userName + "s to provide an assessment. However, we can give you the general assessments for traits shared by all those whose names start with the letter " + userName[0] + ".<br><br>";
+    }
+    
+    //array holding all of the names because i can't find a simple external storage unit for these
+    names = [
+        [ //A
+            "A",
+            ["Aaron", "An * is likely untrustworthy. He will, quite frankly, be bad at covering it up, but he has a way of making you overlook things.\nIf you're not careful, you will stop seeing the red flags and start making excuses for them. Don't go there."],
+            ["Alexis Alexus", "* has much potential. She can be a fun friend and tends to be engaging in larger social gatherings. However, keep in mind that her being a fun friend doesn't make her a good friend."],
+            ["Ali Alli Ally Alison Alyson Allison Allyson", "Your *'s a 50-50 split. She's either annoying or quiet, but neither are to a high degree.\nIf she's an annoying one, it's not so incredibly annoying that you can't stand her. You'll probably end up being friends, too- it's the type of annoying that eventually turns to endearing.\nIf she's a quiet one, she's not painfully introverted, but don't be surprised if you have to make the first move if you want to talk to her."],
+            ["Aliana Alyana Aliyana", "*s can be kind of rough to deal with.\nThey do anything to get what they want, and will propably manipulate you into helping them.\n*s also tend to be drama queens. If you're not into that, then watch your back."],
+            ["Alia", "Please do yourself a favor and do not, under any circumstances, get close to an *.\nShe likely seems innocent enough on the outside, but she'll very quickly draw you into her mess and coerce you into 'helping' her.\nIf you're too kindhearted to say no, help from afar. If you're not, disengage right away and thank me later.\nShe's a drama queen of obscene proportions. Don't let her fool you. She may mean well, but she will drag you into a state of no longer meaning well quite easily. Be careful."],
+            ["Amanda", "*s are hardheaded and stubborn, but you will love them.\nThey're hilariously funny, whether you share their direct sense of humor or not.\nYou'll need to be patient with your *- that aforementioned stubbornness can get in the way of your relationship if you let it. Work through it and you'll be golden."],
+            ["Andrew", "*s are interesting men. They're not inherently bad or good to keep around, but you will need to stay aware.\nThey do not know how to express themselves very well despite having a lot to say. They can also be rather wishy-washy in their decision making, and it will be visible/palpable even if they do not tell you.\nThey're likely to be introverted and relatively softspoken, but if you establish mutual trust and are patient, your * will open up to you. They can be good friends despite their many quirks."],
+            ["Andy", "*s are absolute sweethearts in every way. They have a great sense of humor and a smile for every day of the week.\nKeep your * close, and be nice to him. He deserves it."],
+            ["Overall", "Quite an interesting letter. Many A names are a bit crazy and a little strange, but in an oddly endearing way. They're great friends once you get to know them.\nThey usually hold a few traits that seem a little 'much' to handle or are simply annoying, but they are typically easy to look past.\nIf you're willing to get to know an A on a deeper level, they're cool to hang around."]
+        ],
+
+        [ //B
+            "B",
+            ["B Name", "B Name assessment"],
+            ["Overall", "Overall B assessment"]
+        ]
+    ]; 
+    //finish filling out this area with the remaining names in namestorip.json
+
+    //for loop to fetch the assessment
+    for (i = 0; i < names.length; i++){ 
+        if (userName[0] == names[i][0]){ //if the first letter of userName matches the first letter (first index) in a sub-array
+
+            if (userName.length == 1){ //if userName is a single letter
+                assessment = names[i][names[i].length-1][1]; //provide the overall assessment by default
+                break;
+            }
+
+            for (a = 0; a < names[i].length; a++){ //iterate through that sub-array
+                //using toUpperCase to avoid case issues
+                if (names[i][a][0].toUpperCase().includes(userName.toUpperCase())){ //if the (array of) name(s) contains userName (i.e. a match)
+                    assessment = names[i][a][1]; //catch that as the assessment value
+                    return assessment;
+                }
+
+                if (names[i][a][0] == "Overall"){ //if userName is not in the array
+                    assessment = names[i][a][1]; //provide the overall letter assessment
+                }
+            }
+        }
+    }
+    return overallNote + assessment;
+}
+
+//displays the user inputted name's assessment on search.html
+function nameDisplay(){
+    userName = document.getElementById("userName").value; //gets the current value of the userName form ID
+    document.getElementById("displayName").innerHTML = "-" + userName.toUpperCase() + "-"; //set the right panel's title to userName
+
+    assessment = fetchAssessment(userName); //call fetchAssessment to fetch the assessment text
+    assessment = assessment.split("*").join(userName); //replacing * [the mark for replacement] in the assessment text with userName
+
+    document.getElementById("displayAssessment").innerHTML = assessment; //set the right panel's <p> to assessment
+
+}
