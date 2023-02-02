@@ -29,21 +29,23 @@
             <!-- "Body" -->
             <div class = "row">
                 <div class = "col-sm-6">
-                    <h3>HOW</h3>
+                    <h3>-HOW-</h3>
                     <p>does this work?</p>
                     <p>Type a name into the textbox below. If that name exists in our <i>premium</i> name database, then that name and its assessment will be displayed in the panel to the right.</p>
                     <p>Or, let's say you just want to know about the traits of people whose name start with a particula letter. Type that letter in instead, and the general advice will be displayed.</p>
                     <p>Go on, give it a whirl!</p>
-                    <form onsubmit = "this.reset();">
-                        <input class = "inputText" type = "text" id = "name" placeholder = "Enter and be amazed"><br>
+                    <p><i>*right now, you need to make sure you capitalize the name properly. We're working to fix this in upcoming updates</i></p>
+
+                    <!-- to catch form data without refreshing the page: use action and javascript: -->
+                    <form action = "javascript:nameDisplay()"> 
+                        <input class = "inputText" type = "text" id = "userName" placeholder = "Enter and be amazed..."><br>
                         <input type = "submit" value = "Submit">
                     </form>
                 </div>
 
                 <div class = "col-sm-6">
-                    <h3>-THIS-</h3>
-                    <p>is where it will come up!</p>
-                    
+                    <h3 id = "displayName">-THIS-</h3>
+                    <p id = "displayAssessment">is where it will come up!</p>
                 </div>
             </div>
 
