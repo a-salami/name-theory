@@ -148,6 +148,22 @@ function dateDisplay(){
     document.getElementById("modified").value = newFormat;
 }
 
+//switches the website theme from dark to light mode and vice versa
+function lightDarkMode(){
+    if (document.getElementById("lD").value == "Change to Light Mode"){ //if the text is currently about light mode
+        document.getElementById("lD").value = "Change to Dark Mode"; //make it about dark mode
+    }
+    else{ //otherwise the text is currently about dark mode
+        document.getElementById("lD").value = "Change to Light Mode"; //so make it about light mode
+    }
+
+    document.body.classList.toggle("body-light-mode"); //change the background color to "blunted white"
+    rows = document.getElementsByClassName("row"); //gets all rows on the page and places them into an array
+    for (a = 0; a < rows.length; a++){ //iterate through the array of row DOM objects
+        rows[a].classList.toggle("row-light-mode"); //change the background color of all rows to "blunted white"
+    }
+}
+
 //creates the footer for all pages
 function setFooter(id){
     content = `
@@ -166,7 +182,7 @@ function setFooter(id){
         <h4>Last updated:</h4>
         <input type = "submit" id = "modified" value = "` + pageLastModified() + `" onclick = "dateDisplay();"><br>
         <a href = "#top"><input type = "submit" value = "To Top"></a><br>
-        <input type = "submit" value = "Change to Light Mode">
+        <input type = "submit" id = "lD" value = "Change to Light Mode" onclick = "lightDarkMode();">
     </div>`;
 
     document.getElementById(id).innerHTML += content;
