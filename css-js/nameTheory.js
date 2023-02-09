@@ -157,11 +157,15 @@ function lightDarkMode(){
         document.getElementById("lD").value = "Change to Light Mode"; //so make it about light mode
     }
 
-    document.body.classList.toggle("body-light-mode"); //change the background color to "blunted white"
+    document.body.classList.toggle("body-light-mode"); //change the page background color
     rows = document.getElementsByClassName("row"); //gets all rows on the page and places them into an array
     for (a = 0; a < rows.length; a++){ //iterate through the array of row DOM objects
-        rows[a].classList.toggle("row-light-mode"); //change the background color of all rows to "blunted white"
+        rows[a].classList.toggle("row-light-mode"); //change the background color of all rows
+        //figure out how to change the color of links in the columns of the main rows
     }
+    document.getElementById("nav").classList.toggle("navbar-light-mode"); //change the navbar background color and button colors
+    document.getElementById("top").classList.toggle("pageHeader-light-mode"); //change the header background color
+    document.getElementById("footer").classList.toggle("pageFooter-light-mode"); //change the footer background color
 }
 
 //creates the footer for all pages
@@ -179,7 +183,7 @@ function setFooter(id){
     </div>
 
     <div class = "col-sm-7">
-        <h4>Last updated:</h4>
+        <h4>This page was last updated:</h4>
         <input type = "submit" id = "modified" value = "` + pageLastModified() + `" onclick = "dateDisplay();"><br>
         <a href = "#top"><input type = "submit" value = "To Top"></a><br>
         <input type = "submit" id = "lD" value = "Change to Light Mode" onclick = "lightDarkMode();">
