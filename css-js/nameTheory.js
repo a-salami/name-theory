@@ -203,6 +203,32 @@ function capitalize(userString){
     return userCapitalized.trim(); //put the capitalized name back together and return it. also trims whitespace on the end of the string
 }
 
+//storing all of the names and assessments, available on call
+function fetchNames(){
+        //array holding all of the names because i can't find a simple external storage unit for these
+        names = [
+            [   "A",
+                ["Aaron", "An * is likely untrustworthy. He will, quite frankly, be bad at covering it up, but he has a way of making you overlook things.<br><br>If you're not careful, you will stop seeing the red flags and start making excuses for them. Don't go there."],
+                ["Alexis Alexus", "* has much potential. She can be a fun friend and tends to be engaging in larger social gatherings. However, keep in mind that her being a fun friend doesn't make her a good friend."],
+                ["Ali Alli Ally Alison Alyson Allison Allyson", "* is likely either quiet or shy and, quite honestly, a little bit annoying, but usually not to the point that you don't want to engage with her. She has a distinct personality under her shyness, quietness, or whatever annoying trait is currently keeping you from knowing her better. <br><br>She is likely holding herself hostage with her quietness or shyness. If you make the first step to engage her, she'll return the energy you give her. Give * a chance; she really might surprise you."],
+                ["Aliana Alyana Aliyana", "*s can be kind of rough to deal with.<br><br>They do anything to get what they want, and will propably manipulate you into helping them.<br><br>*s also tend to be drama queens. If you're not into that, then watch your back."],
+                ["Alia", "Please do yourself a favor and do not, under any circumstances, get close to an *.<br><br>She likely seems innocent enough on the outside, but she'll very quickly draw you into her mess and coerce you into 'helping' her.<br><br>If you're too kindhearted to say no, help from afar. If you're not, disengage right away and thank me later.<br><br>She's a drama queen of obscene proportions. Don't let her fool you. She may mean well, but she will drag you into a state of no longer meaning well quite easily. Be careful."],
+                ["Amanda", "*s are hardheaded and stubborn, but you will love them.<br><br>They're hilariously funny, whether you share their direct sense of humor or not.<br><br>You'll need to be patient with your *- that aforementioned stubbornness can get in the way of your relationship if you let it. Work through it and you'll be golden."],
+                ["Andrew", "*s are interesting men. They're not inherently bad or good to keep around, but you will need to stay aware.<br><br>They do not know how to express themselves very well despite having a lot to say. They can also be rather wishy-washy in their decision making, and it will be visible/palpable even if they do not tell you.<br><br>They're likely to be introverted and relatively softspoken, but if you establish mutual trust and are patient, your * will open up to you. They can be good friends despite their many quirks."],
+                ["Andy", "*s are absolute sweethearts in every way. They have a great sense of humor and a smile for every day of the week.<br><br>Keep your * close, and be nice to him. He deserves it."],
+                ["Overall", "Quite an interesting letter. Many A names a bit odd, but they tend to be endearing. They're great friends once you get to know them.<br><br>They usually hold a few traits that seem a little 'much' to handle or are simply annoying, but they are typically easy to work past. If you're willing to get to know an A on a deeper level, they're cool to hang around."]
+            ],
+    
+            [   "B",
+                ["B Name", "B Name assessment"],
+                ["Overall", "Overall B assessment"]
+            ]
+        ]; 
+        //finish filling out this area with the remaining names in namestorip.json
+
+    return names;
+}
+
 //getting the assessment given a user submitted name
 function fetchAssessment(userName){
     assessment = ""; //variable to hold assessment text
@@ -214,28 +240,7 @@ function fetchAssessment(userName){
         overallNote = "We don't yet have enough on " + userName + "s to provide an assessment. However, we can give you the general assessments for traits shared by all those whose names start with the letter " + userName[0] + ".<br><br>";
     }
     
-    //array holding all of the names because i can't find a simple external storage unit for these
-    names = [
-        [ //A
-            "A",
-            ["Aaron", "An * is likely untrustworthy. He will, quite frankly, be bad at covering it up, but he has a way of making you overlook things.<br><br>If you're not careful, you will stop seeing the red flags and start making excuses for them. Don't go there."],
-            ["Alexis Alexus", "* has much potential. She can be a fun friend and tends to be engaging in larger social gatherings. However, keep in mind that her being a fun friend doesn't make her a good friend."],
-            ["Ali Alli Ally Alison Alyson Allison Allyson", "* is likely either quiet or shy and, quite honestly, a little bit annoying, but usually not to the point that you don't want to engage with her. She has a distinct personality under her shyness, quietness, or whatever annoying trait is currently keeping you from knowing her better. <br><br>She is likely holding herself hostage with her quietness or shyness. If you make the first step to engage her, she'll return the energy you give her. Give * A chance; she really might surprise you."],
-            ["Aliana Alyana Aliyana", "*s can be kind of rough to deal with.<br><br>They do anything to get what they want, and will propably manipulate you into helping them.<br><br>*s also tend to be drama queens. If you're not into that, then watch your back."],
-            ["Alia", "Please do yourself a favor and do not, under any circumstances, get close to an *.<br><br>She likely seems innocent enough on the outside, but she'll very quickly draw you into her mess and coerce you into 'helping' her.<br><br>If you're too kindhearted to say no, help from afar. If you're not, disengage right away and thank me later.<br><br>She's a drama queen of obscene proportions. Don't let her fool you. She may mean well, but she will drag you into a state of no longer meaning well quite easily. Be careful."],
-            ["Amanda", "*s are hardheaded and stubborn, but you will love them.<br><br>They're hilariously funny, whether you share their direct sense of humor or not.<br><br>You'll need to be patient with your *- that aforementioned stubbornness can get in the way of your relationship if you let it. Work through it and you'll be golden."],
-            ["Andrew", "*s are interesting men. They're not inherently bad or good to keep around, but you will need to stay aware.<br><br>They do not know how to express themselves very well despite having a lot to say. They can also be rather wishy-washy in their decision making, and it will be visible/palpable even if they do not tell you.<br><br>They're likely to be introverted and relatively softspoken, but if you establish mutual trust and are patient, your * will open up to you. They can be good friends despite their many quirks."],
-            ["Andy", "*s are absolute sweethearts in every way. They have a great sense of humor and a smile for every day of the week.<br><br>Keep your * close, and be nice to him. He deserves it."],
-            ["Overall", "Quite an interesting letter. Many A names a bit odd, but they tend to be endearing. They're great friends once you get to know them.<br><br>They usually hold a few traits that seem a little 'much' to handle or are simply annoying, but they are typically easy to work past. If you're willing to get to know an A on a deeper level, they're cool to hang around."]
-        ],
-
-        [ //B
-            "B",
-            ["B Name", "B Name assessment"],
-            ["Overall", "Overall B assessment"]
-        ]
-    ]; 
-    //finish filling out this area with the remaining names in namestorip.json
+    names = fetchNames(); //getting names from the array stored in fetchNames 
 
     //for loop to fetch the assessment
     for (i = 0; i < names.length; i++){ 
