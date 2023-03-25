@@ -222,6 +222,12 @@ function fetchNames(){
             [   "B",
                 ["B Name", "B Name assessment"],
                 ["Overall", "Overall B assessment"]
+            ],
+
+            [   "L",
+                ["L Name", "L Name assessment"],
+                ["Lydia", "*s are interesting. You might get a bit of a pretentious vibe from her when you first meet, and *s go either way.<br><br>She might really be pretentious, which is unfortuante. She will think she's better than you, and you'll see it in the way she treats others even if she never says it out loud. Her unshakeable confidence in herself with likely be more annoying and impressive, and she doesn't often realize that the things she's saying can make her come across as rather unlikeable.<br><br>You might get a * with whom you can get along on a surface level, but your relationship will never develop further than that.<br><br>Rarely, she might be a real sweetheart, though- first impressions aren't everything. She's down to earth and doesn't think herself over others."]
+                ["Overall", "Overall L assessment"]
             ]
         ]; 
         //finish filling out this area with the remaining names in namestorip.json
